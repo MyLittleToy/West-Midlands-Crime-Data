@@ -85,18 +85,6 @@ ORDER BY
     crime_count DESC;
 ```
 
-```sql
-SELECT 
-    crime_type, 
-    COUNT(*) AS crime_count
-FROM 
-    CombinedCrimeData
-GROUP BY 
-    crime_type
-ORDER BY 
-    crime_count DESC;
-```
-
     Location                                           Crime_count
     -------------------------------------------------- -----------
     On or near unspecified                             9906
@@ -110,7 +98,7 @@ ORDER BY
     On or near Sports/Recreation Area                  891
     On or near New Street                              631
 
-Insight: The majority of crimes occur at "unspecified" locations, followed by parking areas and supermarkets. Commercial locations (supermarkets, shopping areas, petrol stations) feature prominently in the top ten.
+**Insight**: The majority of crimes occur at "unspecified" locations, followed by parking areas and supermarkets. Commercial locations (supermarkets, shopping areas, petrol stations) feature prominently in the top ten.
 
 ---
 
@@ -141,7 +129,7 @@ Question 2: Most Common Types of Crime
     Theft from the person                              2019
     Bicycle theft                                      1143
     
-Insight: Violence and sexual offences dominate the crime landscape, accounting for more than the next four crime types combined. Vehicle crime is the second most common offence.
+**Insight**: Violence and sexual offences dominate the crime landscape, accounting for more than the next four crime types combined. Vehicle crime is the second most common offence.
 
 ---
 
@@ -170,7 +158,7 @@ Question 3: Geographical Hotspots for Specific Crimes
     On or near Unspecified                             Public order                                       882
     On or near Shopping Area                           Violence and sexual offences                       791
     
-Insight: Supermarkets are high-risk locations for both shoplifting and violence. Parking areas show high rates of violence and sexual offences.
+**Insight**: Supermarkets are high-risk locations for both shoplifting and violence. Parking areas show high rates of violence and sexual offences.
 
 ---
 
@@ -198,7 +186,7 @@ use West_Midlands_Crime
     Formal action is not in the public interest                                                                                                                                                                                                                      13
     Investigation complete; no suspect identified                                                                                                                                                                                                                    53475
 
-Insight: Over 125,000 reported crimes (approximately 62%) result in either "unable to prosecute" or "no suspect identified," highlighting significant challenges in crime resolution.
+**Insight**: Over 125,000 reported crimes (approximately 62%) result in either "unable to prosecute" or "no suspect identified," highlighting significant challenges in crime resolution.
 
 ---
  
@@ -225,7 +213,7 @@ Question 5: Correlation Between Crime Type and Outcome
     Burglary                                           Investigation complete; no suspect identified      5032 
     Shoplifting                                        Investigation complete; no suspect identified      4550
 
-Insight: Violence and sexual offences have the highest rate of "unable to prosecute" outcomes. Property crimes (vehicle, theft, burglary, shoplifting) most frequently result in "investigation complete; no suspect identified."
+**Insight**: Violence and sexual offences have the highest rate of "unable to prosecute" outcomes. Property crimes (vehicle, theft, burglary, shoplifting) most frequently result in "investigation complete; no suspect identified."
 
 ---
 
@@ -246,7 +234,7 @@ Question 6: Time Trends for Specific Crime Types
     2023-07                                            Criminal damage and arson                          2423
     2023-08                                            Criminal damage and arson                          2270
     
-# Trend: Relatively stable throughout the period, with a slight decrease in August.
+**Trend**: Relatively stable throughout the period, with a slight decrease in August.
 ```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
@@ -263,7 +251,7 @@ SELECT month, crime_type, COUNT(*) AS crime_count
     2023-07                                            Anti-social behaviour                              2479
     2023-08                                            Anti-social behaviour                              2891
     
-# Trend: Significant upward trend from March to August, nearly doubling over the six-month period.
+**Trend**: Significant upward trend from March to August, nearly doubling over the six-month period.
 ```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
@@ -280,7 +268,7 @@ SELECT month, crime_type, COUNT(*) AS crime_count
     2023-07                                            Burglary                                           1528
     2023-08                                            Burglary                                           1727
     
-# Trend: Decline from March to June, followed by an increase in July and August.    
+**Trend**: Decline from March to June, followed by an increase in July and August.    
 ```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
@@ -297,7 +285,7 @@ SELECT month, crime_type, COUNT(*) AS crime_count
     2023-07                                            Drugs                                              689
     2023-08                                            Drugs                                              640
     
-# Trend: Relatively stable, with a notable dip in April.
+**Trend**: Relatively stable, with a notable dip in April.
 ```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
@@ -314,7 +302,7 @@ SELECT month, crime_type, COUNT(*) AS crime_count
     2023-07                                            Violence and sexual offences                       12781
     2023-08                                            Violence and sexual offences                       11497
     
-# Trend: Consistent monthly volume (12,500–13,200) until a notable drop in August.
+**Trend**: Consistent monthly volume (12,500–13,200) until a notable drop in August.
 ```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
@@ -331,7 +319,7 @@ SELECT month, crime_type, COUNT(*) AS crime_count
     2023-07                                            Vehicle crime                                      2843
     2023-08                                            Vehicle crime                                      2697
 
-# Trend: Gradual decline from March to June, stabilising in the summer months.
+**Trend**: Gradual decline from March to June, stabilising in the summer months.
 
 ---
 
