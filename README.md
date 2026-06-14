@@ -40,6 +40,7 @@ Created a dedicated database to store and analyse the crime data.
 
 ```sql
 CREATE DATABASE West_Midland_Crime;
+```
 
 ### STEP 2: Data Consolidation
 Combined all six monthly tables into a single unified table using UNION ALL for comprehensive analysis.
@@ -59,6 +60,7 @@ UNION ALL
 SELECT * FROM dbo.[2023-07-west-midlands-street]
 UNION ALL
 SELECT * FROM dbo.[2023-08-west-midlands-street];
+```
 
 ### STEP 3: Analysis Questions
 The analysis addressed six key business questions:
@@ -81,6 +83,7 @@ GROUP BY
     location
 ORDER BY 
     crime_count DESC;
+```
 
 ```sql
 SELECT 
@@ -92,6 +95,7 @@ GROUP BY
     crime_type
 ORDER BY 
     crime_count DESC;
+```
 
     Location                                           Crime_count
     -------------------------------------------------- -----------
@@ -113,10 +117,12 @@ Insight: The majority of crimes occur at "unspecified" locations, followed by pa
 Question 2: Most Common Types of Crime
 
 --Most Common Type of Crime
+```sql
     SELECT crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
     GROUP BY crime_type
     ORDER BY crime_count DESC;
+```
 
     Crime_type                                         Crime_count
     -------------------------------------------------- -----------
@@ -140,15 +146,16 @@ Insight: Violence and sexual offences dominate the crime landscape, accounting f
 ---
 
 Question 3: Geographical Hotspots for Specific Crimes
-
+```sql
     USE		West_Midlands_Crime
-    
+```
+```sql    
     SELECT top 10 location, crime_type, COUNT(*) AS crime_count 
     FROM CombinedCrimeData
     GROUP BY location, crime_type 
     HAVING COUNT(*) > 100 
     ORDER BY crime_count DESC;
-
+```
   
     Location                                           Crime_type                                         Crime_count
     -------------------------------------------------- -------------------------------------------------- -----------
@@ -170,11 +177,11 @@ Insight: Supermarkets are high-risk locations for both shoplifting and violence.
 Question 4: Outcomes of Reported Crimes  
 
 use West_Midlands_Crime
-    
+```sql    
     SELECT last_outcome_category, COUNT(*) AS outcome_count
     FROM CombinedCrimeData
     GROUP BY last_outcome_category;
-
+```
     last_outcome_category                                                                                                                                                                                                                                            outcome_count
     ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------
     Under investigation                                                                                                                                                                                                                                              36479
@@ -196,14 +203,15 @@ Insight: Over 125,000 reported crimes (approximately 62%) result in either "unab
 ---
  
 Question 5: Correlation Between Crime Type and Outcome
-
+```sql
     USE West_Midlands_Crime
-    
+```
+```sql    
     SELECT TOP 10 crime_type, Last_outcome_category, COUNT(*) AS outcome_count
     FROM CombinedCrimeData
     GROUP BY crime_type, Last_outcome_category
     ORDER BY outcome_count DESC
-
+```
     Crime_type                                         Last_outcome_category                              outcome_count
     -------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------
     Violence and sexual offences                       Unable to prosecute suspect                        45962
@@ -222,13 +230,13 @@ Insight: Violence and sexual offences have the highest rate of "unable to prosec
 ---
 
 Question 6: Time Trends for Specific Crime Types
-
+```sql
     SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
     WHERE crime_type = 'Criminal damage and arson'
     GROUP BY month, crime_type
     ORDER BY month;
-
+```
     Month                                              Crime_type                                         Crime_count
     -------------------------------------------------- -------------------------------------------------- -----------
     2023-03                                            Criminal damage and arson                          2421
@@ -239,12 +247,13 @@ Question 6: Time Trends for Specific Crime Types
     2023-08                                            Criminal damage and arson                          2270
     
 # Trend: Relatively stable throughout the period, with a slight decrease in August.
-
+```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
     WHERE crime_type = 'Anti-Social behaviour'
     GROUP BY month, crime_type
     ORDER BY month;
+```
     month                                              crime_type                                         crime_count
     -------------------------------------------------- -------------------------------------------------- -----------
     2023-03                                            Anti-social behaviour                              1455
@@ -255,13 +264,13 @@ SELECT month, crime_type, COUNT(*) AS crime_count
     2023-08                                            Anti-social behaviour                              2891
     
 # Trend: Significant upward trend from March to August, nearly doubling over the six-month period.
-
+```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
     WHERE crime_type = 'Burglary'
     GROUP BY month, crime_type
     ORDER BY month;
-
+```
     month                                              crime_type                                         crime_count
     -------------------------------------------------- -------------------------------------------------- -----------
     2023-03                                            Burglary                                           1810
@@ -272,13 +281,13 @@ SELECT month, crime_type, COUNT(*) AS crime_count
     2023-08                                            Burglary                                           1727
     
 # Trend: Decline from March to June, followed by an increase in July and August.    
-
+```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
     WHERE crime_type = 'Drugs'
     GROUP BY month, crime_type
     ORDER BY month;
-
+```
     month                                              crime_type                                         crime_count
     -------------------------------------------------- -------------------------------------------------- -----------
     2023-03                                            Drugs                                              698
@@ -289,13 +298,13 @@ SELECT month, crime_type, COUNT(*) AS crime_count
     2023-08                                            Drugs                                              640
     
 # Trend: Relatively stable, with a notable dip in April.
-
+```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
     WHERE crime_type = 'Violence and sexual offences'
     GROUP BY month, crime_type
     ORDER BY month;
-
+```
     month                                              crime_type                                         crime_count
     -------------------------------------------------- -------------------------------------------------- -----------
     2023-03                                            Violence and sexual offences                       13189
@@ -306,13 +315,13 @@ SELECT month, crime_type, COUNT(*) AS crime_count
     2023-08                                            Violence and sexual offences                       11497
     
 # Trend: Consistent monthly volume (12,500–13,200) until a notable drop in August.
-
+```sql
 SELECT month, crime_type, COUNT(*) AS crime_count
     FROM CombinedCrimeData
     WHERE crime_type = 'Vehicle crime'
     GROUP BY month, crime_type
     ORDER BY month;
-
+```
     month                                              crime_type                                         crime_count
     -------------------------------------------------- -------------------------------------------------- -----------
     2023-03                                            Vehicle crime                                      3312
